@@ -19,7 +19,9 @@ class Producto(models.Model):
         Categoria, 
         on_delete=models.CASCADE, 
         related_name="productos",
-        verbose_name="Categoría"
+        verbose_name="Categoría",
+        null = True,
+        blank=True
     )
     nombre = models.CharField(max_length=200)
     descripcion = models.TextField(verbose_name="Descripción")
