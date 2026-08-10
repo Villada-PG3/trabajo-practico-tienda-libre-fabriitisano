@@ -36,4 +36,4 @@ class Producto(models.Model):
         ordering = ['-creado']  
 
     def __str__(self):
-        return self.nombre
+        return f"{self.nombre}- ${self.precio}- Stock = {self.stock}"

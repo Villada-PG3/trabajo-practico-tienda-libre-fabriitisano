@@ -15,14 +15,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from tiendalibre.views import ProductosTemplateView
-from django.conf import settings 
-from django.conf.urls.static import static 
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
+    # 1. El Admin TIENE que llevar 'admin/' adelante para no tapar a las demás rutas
     path('admin/', admin.site.urls),
-    path('productos/', ProductosTemplateView.as_view())
+
+    # 2. Tu app tiendalibre atiende la raíz de la web
+    path('', include('tiendalibre.urls')),
 ]
+
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

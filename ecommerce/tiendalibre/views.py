@@ -1,6 +1,10 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.http import HttpResponse
 
-class ProductosTemplateView(TemplateView):
-    template_name= "productos.html"
+
 # Create your views here.
+def home(request):
+    return HttpResponse("<h1>Bienvenidos a Tienda libre</h1>")
+
+def acerca_de(request):
+    return render(request,"tiendalibre/acerca-de-mi.html")
