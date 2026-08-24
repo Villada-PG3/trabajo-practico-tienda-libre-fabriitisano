@@ -1,31 +1,180 @@
 {% extends 'tiendalibre/base.html' %}
 
-{% block title %}Acerca de Mí - Tienda Libre{% endblock %}
+{% block title %}Acerca de Mí - Fabrizio Tisano{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card shadow-sm border-0 my-4">
-            <div class="card-body p-4">
-                <h2 class="card-title fw-bold text-dark mb-3">👨‍💻 Sobre mi</h2>
-                <hr>
-                
-                <div class="fs-5 lh-lg">
-                    <p class="mb-2"><strong>Nombre:</strong> Fabrizio Tisano</p>
-                    <p class="mb-2"><strong>Proyecto:</strong> Tienda Libre (E-commerce)</p>
-                    <p class="mb-2"><strong>Materia:</strong> Programación — 6to Año</p>
-                    <p class="mt-3 text-muted fs-6">
-                        Creacion de web con Django.
-                    </p>
-                </div>
+  <div class="col-lg-9">
 
-                <div class="mt-4">
-                    <a href="{% url 'home' %}" class="btn btn-outline-dark">
-                        ← Volver al Inicio
-                    </a>
-                </div>
-            </div>
-        </div>
+    <!-- ENCABEZADO -->
+    <div class="p-4 p-md-5 mb-4 bg-white rounded-3 shadow-sm text-center border">
+      <h1 class="display-5 fw-bold text-danger">Fabrizio Tisano</h1>
+      <p class="fs-5 text-secondary">Estudiante de programación | Fanático del deporte</p>
     </div>
+
+    <!-- SOBRE MÍ -->
+    <div class="card shadow-sm border-0 mb-4">
+      <div class="card-body p-4">
+        <h2 class="text-danger border-bottom border-danger border-2 pb-2 mb-3">Sobre mí</h2>
+        <p class="fs-5">Hola, soy <strong>Fabrizio Tisano</strong>. Estoy aprendiendo programación y me encantan los deportes.</p>
+        <blockquote class="blockquote bg-light p-3 rounded border-start border-danger border-4 fs-6">
+          "Mi creencia es que todo pasa por algo y lo que no pasa también es por algo."
+        </blockquote>
+        <p class="mb-0 text-muted fs-6">Todo sacado de acá: <a href="https://www.w3schools.com" target="_blank" class="text-danger">W3Schools</a>.</p>
+      </div>
+    </div>
+
+    <!-- GUSTOS -->
+    <div class="card shadow-sm border-0 mb-4">
+      <div class="card-body p-4">
+        <h2 class="text-danger border-bottom border-danger border-2 pb-2 mb-3">Mis Gustos</h2>
+        <ul class="list-group list-group-flush mb-4">
+          <li class="list-group-item"><strong>Fútbol:</strong> Juego desde los 4 años, me encanta todo lo relacionado al deporte, es en donde mejor me desenvuelvo.</li>
+          <li class="list-group-item"><strong>Básquet:</strong> Jugué 1 año porque justo me agarró pandemia entonces tuve que dejar, pero cuando estuve me fue muy bien.</li>
+          <li class="list-group-item">Programación</li>
+          <li class="list-group-item">Reírme con mis amigos</li>
+          <li class="list-group-item">Familia</li>
+          <li class="list-group-item">Playa</li>
+          <li class="list-group-item">Calor</li>
+          <li class="list-group-item">Viajar</li>
+          <li class="list-group-item">Vacaciones</li>
+        </ul>
+
+        <!-- BOTÓN DESPLEGABLE CON FOTO DE INSTITUTO -->
+        <button id="btn-toggle" class="btn btn-outline-danger btn-lg w-100 fw-bold">
+          Ver foto del ÚNICO CLUB DE LA CIUDAD
+        </button>
+
+        <div id="boton" class="mt-3 text-center" style="display: none;">
+          <img src="https://institutoacc.com.ar/wp-content/uploads/2024/04/20240328-89-Instituto-x-Argentinos-Jrs_-2-800x450.jpg" alt="Instituto" class="img-fluid rounded border border-danger border-3 shadow">
+        </div>
+      </div>
+    </div>
+
+    <!-- PERSONALIDAD -->
+    <div class="card shadow-sm border-0 mb-4">
+      <div class="card-body p-4">
+        <h2 class="text-danger border-bottom border-danger border-2 pb-2 mb-3">Personalidad</h2>
+        <div class="d-flex flex-wrap gap-2">
+          <span class="badge bg-danger fs-6">Empático</span>
+          <span class="badge bg-secondary fs-6">Tranquilo</span>
+          <span class="badge bg-danger fs-6">Adaptativo</span>
+          <span class="badge bg-secondary fs-6">Generoso</span>
+          <span class="badge bg-danger fs-6">Amigable</span>
+          <span class="badge bg-secondary fs-6">Vergonzoso</span>
+          <span class="badge bg-danger fs-6">Desconfiado</span>
+          <span class="badge bg-secondary fs-6">Porfeado</span>
+          <span class="badge bg-danger fs-6">Bipolar</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- OBJETIVOS -->
+    <div class="card shadow-sm border-0 mb-4">
+      <div class="card-body p-4">
+        <h2 class="text-danger border-bottom border-danger border-2 pb-2 mb-3">Objetivos y prioridades</h2>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle border">
+            <thead class="table-danger">
+              <tr>
+                <th>Objetivo</th>
+                <th>Prioridad</th>
+                <th>Esperanza</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Ser futbolista</td><td>Medio</td><td>20%</td></tr>
+              <tr><td>Recibirme</td><td>Alta</td><td>100%</td></tr>
+              <tr><td>Vivir en Brasil</td><td>Intermedio</td><td>60%</td></tr>
+              <tr><td>Casarme</td><td>Medio</td><td>100%</td></tr>
+              <tr><td>Independencia</td><td>Bajo</td><td>100%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACTO -->
+    <div class="card shadow-sm border-0 mb-4">
+      <div class="card-body p-4">
+        <h2 class="text-danger border-bottom border-danger border-2 pb-2 mb-3">Contacto</h2>
+        <p>Completá el formulario:</p>
+
+        <div id="mensaje-form" class="alert d-none mb-3" role="alert"></div>
+
+        <form id="formulario-contacto" novalidate>
+          <div class="mb-3">
+            <label for="nombre" class="form-label font-weight-bold">Nombre:</label>
+            <input type="text" id="nombre" class="form-control" placeholder="Tu nombre" />
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label font-weight-bold">Email:</label>
+            <input type="email" id="email" class="form-control" placeholder="tu@email.com" />
+          </div>
+
+          <div class="mb-3">
+            <label for="mensaje" class="form-label font-weight-bold">Mensaje:</label>
+            <textarea id="mensaje" class="form-control" rows="5" placeholder="Escribí tu mensaje..."></textarea>
+            <div id="contador" class="form-text text-end mt-1">0 / 300 caracteres</div>
+          </div>
+
+          <button type="submit" class="btn btn-danger btn-lg px-4">Enviar</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // Validación de formulario
+  var form = document.getElementById('formulario-contacto');
+  var msgForm = document.getElementById('mensaje-form');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var nombre  = document.getElementById('nombre').value.trim();
+    var email   = document.getElementById('email').value.trim();
+    var mensaje = document.getElementById('mensaje').value.trim();
+
+    if (nombre === '' || email === '' || mensaje === '') {
+      msgForm.textContent = 'Por favor completa todos los campos antes de enviar.';
+      msgForm.className = 'alert alert-danger d-block';
+      return;
+    }
+
+    msgForm.textContent = '¡Gracias, ' + nombre + '! Tu mensaje fue enviado correctamente.';
+    msgForm.className = 'alert alert-success d-block';
+    form.reset();
+    document.getElementById('contador').textContent = '0 / 300 caracteres';
+  });
+
+  // Contador de caracteres
+  var textarea = document.getElementById('mensaje');
+  var contador = document.getElementById('contador');
+
+  textarea.addEventListener('input', function() {
+    contador.textContent = textarea.value.length + ' / 300 caracteres';
+  });
+
+  // Toggle de la imagen de la Gloria
+  var btnToggle = document.getElementById('btn-toggle');
+  var seccionExtra = document.getElementById('boton');
+  var visible = false;
+
+  btnToggle.addEventListener('click', function() {
+    visible = !visible;
+    if (visible) {
+      seccionExtra.style.display = 'block';
+      btnToggle.textContent = 'Ocultar foto';
+    } else {
+      seccionExtra.style.display = 'none';
+      btnToggle.textContent = 'Ver foto del ÚNICO CLUB DE LA CIUDAD';
+    }
+  });
+</script>
 {% endblock %}
