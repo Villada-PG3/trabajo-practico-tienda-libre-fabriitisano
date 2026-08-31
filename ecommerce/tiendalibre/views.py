@@ -7,12 +7,12 @@ def home(request):
         {"nombre": "Mouse", "precio": 5000, "stock" : 12},
         {"nombre": "Camara", "precio": 10000, "stock": 4},
         {"nombre": "Pendrive ", "precio": 6000, "stock": 6},
-        {"nombre": "USB", "precio": 4000, "stock": 0},
+        {"nombre": "USB", "precio": None, "stock": 0},
 
     ]
     context = {
         "titulo" : "ofertas de la semana",
-        "productos_destacados": productos_destacados,
+        "productos": productos_destacados,
         "usuario_logueado": True
     }
     return render(request, 'tiendalibre/home.html', context)
