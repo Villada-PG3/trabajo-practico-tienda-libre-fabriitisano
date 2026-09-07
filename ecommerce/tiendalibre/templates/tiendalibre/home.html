@@ -8,7 +8,7 @@
 
 
   <div class="text-center bg-white p-5 rounded-3 border shadow-sm mb-5">
-    <h1 class="display-4 fw-bold text-warning mb-3">Bienvenido a Tienda Libre</h1>
+    <h1 class="display-4 fw-bold text-primary mb-3">Bienvenido a Tienda Libre</h1>
     <h2 class="fs-3 text-secondary mb-3">Tu tienda de confianza.</h2>
     <p class="lead text-muted mb-4">Encontrá los mejores productos en nuestra tienda.</p>
 
@@ -16,11 +16,14 @@
       <a href="{% url 'acerca_de' %}" class="btn btn-outline-secondary px-4">
         Acerca de mí
       </a>
-    </div>
+  </div>
+</div>
+
 
     <div>
       {% if usuario_logueado %}
-        <span class="badge bg-success fs-6 mb-4">Sesión Iniciada</span>
+        <span class="badge bg-success fs-6 mb-4 text-center">Sesión Iniciada</span>
+        <h2 class="fs-1 text-dark mb-3 ">Ofertas semanales</h2>
 
 
         <div class="row g-4">
@@ -29,7 +32,7 @@
               <div class="card h-100 shadow-sm border">
                 <div class="card-body d-flex flex-column justify-content-between p-4">
                   <div>
-                    <h5 class="card-title fw-bold text-dark mb-2">{{ producto.nombre|title }}</h5>
+                    <h5 class="card-title fw-bold text-dark mb-2">{{ producto.nombre }}</h5>
                     
                     <p class="card-text fs-4 text-primary fw-bold mb-3">
                       {% if producto.precio %}
@@ -68,5 +71,5 @@
     </div>
   </div>
 
-</div>
+
 {% endblock %}

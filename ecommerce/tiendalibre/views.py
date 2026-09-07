@@ -1,17 +1,13 @@
 from django.shortcuts import render
+from .models import Producto
 
 def home(request):
-    productos_destacados = [
-        {"nombre": "Auriculares", "precio": 15000, "stock" : 5 },
-        {"nombre": "Teclado", "precio": 11000, "stock" : 0 },
-        {"nombre": "Mouse", "precio": 5000, "stock" : 12},
-        {"nombre": "Camara", "precio": 10000, "stock": 4},
-        {"nombre": "Pendrive ", "precio": 6000, "stock": 6},
-        {"nombre": "USB", "precio": None, "stock": 0},
+    
+    productos_destacados = Producto.objects.order_by("-id")[:3]
 
-    ]
+
     context = {
-        "titulo" : "ofertas de la semana",
+        "titulo" : "productos recientes",
         "productos": productos_destacados,
         "usuario_logueado": True
     }
@@ -19,3 +15,11 @@ def home(request):
 
 def acerca_de(request):
     return render(request, 'tiendalibre/acerca-de-mi.html')
+
+def catalogo(request):
+    productos = Producto.objects.filter(activo=True).order_by("-nombre")
+    context = {
+        "productos":productos
+    }
+    return render(request,"tiendalibre/catalogo.html",context)
+

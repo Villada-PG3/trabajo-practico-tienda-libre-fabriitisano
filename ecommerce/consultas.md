@@ -1,7 +1,7 @@
 # Consultas de clase 5 
 
 
-## 1.
+## 1.   
 todos = Producto.objects.all()
 ## 2.
 primer_prod = Producto.objects.first()
