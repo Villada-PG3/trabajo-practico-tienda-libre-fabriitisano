@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Producto
 
 def home(request):
@@ -7,7 +7,7 @@ def home(request):
 
 
     context = {
-        "titulo" : "productos recientes",
+        "titulo" : "Recien Agregados",
         "productos": productos_destacados,
         "usuario_logueado": True
     }
@@ -22,4 +22,8 @@ def catalogo(request):
         "productos":productos
     }
     return render(request,"tiendalibre/catalogo.html",context)
+
+def detalle_producto(request,pk):
+    producto = get_object_or_404(Producto,pk=pk)
+    return render (request,"tiendalibre/detalle.html",{"producto":producto})
 
