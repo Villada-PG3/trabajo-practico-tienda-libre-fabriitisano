@@ -2,89 +2,191 @@
 
 {% block extra_css %}
 <style>
+  /* Sombra bordó intensa para las tarjetas */
   .card-hover {
-    transition: all 0.25s ease;
+    transition: all 0.3s ease;
     border: 1px solid #e2e8f0;
-    box-shadow: 0 4px 12px rgba(128, 0, 32, 0.15) !important;
+    box-shadow: 0 6px 18px rgba(128, 0, 32, 0.35) !important;
   }
   .card-hover:hover {
     transform: translateY(-6px);
-    border-color: #cbd5e1;
-    box-shadow: 0 12px 24px rgba(128, 0, 32, 0.3) !important;
+    border-color: #800020;
+    box-shadow: 0 12px 28px rgba(128, 0, 32, 0.6) !important;
   }
   .product-image {
     height: 220px;
     object-fit: cover;
   }
+  /* Estilo para el Hero / Bienvenida */
+  .hero-section {
+    background-color: #0f172a;
+    border-radius: 1rem;
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="container my-5">
+<div class="container my-4">
 
-  <div class="text-center mb-5">
-    <h1 class="fw-bold text-dark display-6">Productos <span class="text-accent">Destacados</span></h1>
-    <p class="text-muted">Descubrí las últimas novedades ingresadas a la tienda</p>
+  <!-- 1. SECCIÓN DE BIENVENIDA (HERO) -->
+  <div class="hero-section p-5 mb-5 text-center position-relative overflow-hidden">
+    <div class="col-md-10 col-lg-8 mx-auto py-3">
+      <h1 class="display-4 fw-bold mb-3">
+        Bienvenido a Tienda<span class="text-accent">Libre</span>
+      </h1>
+      <p class="lead text-slate-300 mb-4" style="color: #cbd5e1;">
+        Encontrá los mejores productos aca.
+      </p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="{% url 'catalogo' %}" class="btn btn-accent btn-lg px-4 fw-semibold shadow-sm">
+          Explorar Catálogo
+        </a>
+        <a href="#ofertas" class="btn btn-outline-light btn-lg px-4 fw-semibold">
+          Ver Ofertas 
+        </a>
+      </div>
+    </div>
   </div>
 
-  <div class="row g-4">
-    {% for producto in productos %}
-      <div class="col-12 col-md-4">
-        <div class="card h-100 shadow-sm rounded-3 card-hover overflow-hidden">
-          
-          <a href="{% url 'detalle_producto' pk=producto.pk %}">
-            {% if producto.imagen %}
-              <img src="{{ producto.imagen.url }}" class="card-img-top product-image" alt="{{ producto.nombre }}">
-            {% else %}
-              <div class="product-image d-flex align-items-center justify-content-center bg-light text-muted">
-                Sin imagen
-              </div>
-            {% endif %}
-          </a>
 
-          <div class="card-body d-flex flex-column justify-content-between p-4">
-            <div>
-              <span class="badge bg-light text-dark border mb-2 fw-semibold">
-                {{ producto.categoria.nombre|default:"Sin Categoría"|title }}
-              </span>
+  <div id="ofertas" class="mb-5 pt-3">
+    <div class="d-flex align-items-center justify-content-between mb-4 border-bottom pb-2">
+      <div>
+        <h2 class="fw-bold text-dark m-0">
+          Ofertas Semanales
+        </h2>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      {% for producto in productos %}
+        {% if forloop.counter <= 3 %} 
+          <div class="col-12 col-md-4">
+            <div class="card bg-white h-100 rounded-3 card-hover overflow-hidden position-relative">
+        
+
               
-              <h5 class="card-title fw-bold mb-2">
-                <a href="{% url 'detalle_producto' pk=producto.pk %}" class="text-decoration-none text-dark">
-                  {{ producto.nombre|title }}
-                </a>
-              </h5>
-
-              <p class="card-text fs-4 text-accent fw-bold mb-3">
-                ${{ producto.precio|default:"Consultar"|floatformat:2 }}
-              </p>
-            </div>
-
-            <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
-              {% if producto.stock > 0 %}
-                <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1">Stock: {{ producto.stock }}</span>
-              {% else %}
-                <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2 py-1">Sin Stock</span>
-              {% endif %}
-              
-              <a href="{% url 'detalle_producto' pk=producto.pk %}" class="btn btn-outline-accent btn-sm fw-semibold px-3">
-                Ver Detalle
+              <a href="{% url 'detalle_producto' pk=producto.pk %}">
+                {% if producto.imagen %}
+                  <img src="{{ producto.imagen.url }}" class="card-img-top product-image" alt="{{ producto.nombre }}">
+                {% else %}
+                  <div class="product-image d-flex align-items-center justify-content-center bg-light text-muted">
+                    Sin imagen
+                  </div>
+                {% endif %}
               </a>
+
+              <div class="card-body d-flex flex-column justify-content-between p-4">
+                <div>
+                  <span class="badge bg-light text-dark border mb-2 fw-semibold">
+                    {{ producto.categoria.nombre|default:"Sin Categoría"|title }}
+                  </span>
+                  
+                  <h5 class="card-title fw-bold mb-2">
+                    <a href="{% url 'detalle_producto' pk=producto.pk %}" class="text-decoration-none text-dark">
+                      {{ producto.nombre|title }}
+                    </a>
+                  </h5>
+
+                  <p class="card-text fs-4 text-accent fw-bold mb-3">
+                    ${{ producto.precio|default:"Consultar"|floatformat:2 }}
+                  </p>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
+                  {% if producto.stock > 0 %}
+                    <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1">Stock: {{ producto.stock }}</span>
+                  {% else %}
+                    <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2 py-1">Sin Stock</span>
+                  {% endif %}
+                  
+                  <a href="{% url 'detalle_producto' pk=producto.pk %}" class="btn btn-outline-accent btn-sm fw-semibold px-3">
+                    Ver Detalle
+                  </a>
+                </div>
+              </div>
+
             </div>
           </div>
-
+        {% endif %}
+      {% empty %}
+        <div class="col-12 text-center py-4">
+          <p class="text-muted">No hay ofertas disponibles esta semana.</p>
         </div>
-      </div>
-    {% empty %}
-      <div class="col-12 text-center py-4">
-        <p class="text-muted">No hay productos destacados por el momento.</p>
-      </div>
-    {% endfor %}
+      {% endfor %}
+    </div>
   </div>
 
-  <div class="text-center mt-5">
-    <a href="{% url 'catalogo' %}" class="btn btn-accent btn-lg px-4 shadow-sm fw-semibold">
-      Ver Catálogo Completo &rarr;
-    </a>
+
+  
+  <div class="my-5 pt-3">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold text-dark display-6">Productos <span class="text-accent">Destacados</span></h2>
+      <p class="text-muted">Descubrí las últimas novedades ingresadas a la tienda</p>
+    </div>
+
+    <div class="row g-4">
+      {% for producto in productos %}
+        <div class="col-12 col-md-4">
+          <div class="card bg-white h-100 rounded-3 card-hover overflow-hidden">
+            
+            
+            <a href="{% url 'detalle_producto' pk=producto.pk %}">
+              {% if producto.imagen %}
+                <img src="{{ producto.imagen.url }}" class="card-img-top product-image" alt="{{ producto.nombre }}">
+              {% else %}
+                <div class="product-image d-flex align-items-center justify-content-center bg-light text-muted">
+                  Sin imagen
+                </div>
+              {% endif %}
+            </a>
+
+            <div class="card-body d-flex flex-column justify-content-between p-4">
+              <div>
+                <span class="badge bg-light text-dark border mb-2 fw-semibold">
+                  {{ producto.categoria.nombre|default:"Sin Categoría"|title }}
+                </span>
+                
+                <h5 class="card-title fw-bold mb-2">
+                  <a href="{% url 'detalle_producto' pk=producto.pk %}" class="text-decoration-none text-dark">
+                    {{ producto.nombre|title }}
+                  </a>
+                </h5>
+
+                <p class="card-text fs-4 text-accent fw-bold mb-3">
+                  ${{ producto.precio|default:"Consultar"|floatformat:2 }}
+                </p>
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
+                {% if producto.stock > 0 %}
+                  <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1">Stock: {{ producto.stock }}</span>
+                {% else %}
+                  <span class="badge bg-danger-subtle text-danger border border-danger-subtle px-2 py-1">Sin Stock</span>
+                {% endif %}
+                
+                <a href="{% url 'detalle_producto' pk=producto.pk %}" class="btn btn-outline-accent btn-sm fw-semibold px-3">
+                  Ver Detalle
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      {% empty %}
+        <div class="col-12 text-center py-4">
+          <p class="text-muted">No hay productos destacados por el momento.</p>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="text-center mt-5">
+      <a href="{% url 'catalogo' %}" class="btn btn-accent btn-lg px-4 shadow-sm fw-semibold">
+        Ver Catálogo Completo &rarr;
+      </a>
+    </div>
   </div>
 
 </div>
